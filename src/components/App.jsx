@@ -4,10 +4,10 @@ import HomePage from 'pages/Home';
 import Movies from 'pages/Movies';
 // import NotFound from 'pages/NotFound';
 import MovieDetails from 'pages/MovieDetails';
-import Cast from 'pages/Cast';
-import Reviews from 'pages/Reviews';
 import Home from 'pages/Home';
 import { SharedLayout } from './SharedLayout/SharedLayout';
+import Cast from './Cast/Cast';
+import Reviews from './Reviews/Reviews';
 
 export const App = () => {
   return (

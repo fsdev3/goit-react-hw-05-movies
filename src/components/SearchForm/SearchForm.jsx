@@ -1,11 +1,24 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 
 const SearchForm = () => {
-  const handleSubmit = e => {
+  const [searchValue, setSearchValue] = useState('');
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const onChange = evt => {
+    setSearchValue(evt.target.value);
+  };
+
+  const handleSubmit = async e => {
     e.preventDefault();
     const searchValue = e.currentTarget.elements.searchValue.value;
-    console.log('searchValue', searchValue);
+    try {
+      setSearchParams({ query: searchValue.trim() });
+    } catch (error) {
+      console.error(error);
+    }
   };
+
   return (
     <div>
       <h2>Search Movie</h2>
@@ -13,6 +26,8 @@ const SearchForm = () => {
         <input
           type="text"
           name="searchValue"
+          value={searchValue}
+          onChange={onChange}
           required
           placeholder="Input movie name"
         />
@@ -21,4 +36,5 @@ const SearchForm = () => {
     </div>
   );
 };
+
 export default SearchForm;
