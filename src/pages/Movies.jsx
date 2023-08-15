@@ -1,7 +1,13 @@
 import React from 'react';
+import SearchForm from 'components/SearchForm/SearchForm';
 
 const Movies = () => {
-  return <div>Text Movies</div>;
+  // SearchForm()
+  return (
+    <div>
+      <SearchForm />
+    </div>
+  );
 };
 
 export default Movies;
