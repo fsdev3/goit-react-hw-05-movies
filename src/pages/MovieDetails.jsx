@@ -1,5 +1,6 @@
 import { Loader } from 'components/Loader/Loader';
 import MovieCard from 'components/MovieCard/MovieCard';
+import OtherMovieInfo from 'components/OtherMovieInfo/OtherMovieInfo';
 import React, { Suspense, useEffect, useState } from 'react';
 import { Outlet, useParams } from 'react-router-dom';
 import { fetchMovies } from 'services/fetchMovie';
@@ -32,7 +33,7 @@ const MovieDetails = () => {
     movie !== null && (
       <div>
         <MovieCard movie={movie} />
-        {/* <AdditionalInfo /> */}
+        <OtherMovieInfo />
 
         <Suspense fallback={<Loader />}>
           <Outlet />
