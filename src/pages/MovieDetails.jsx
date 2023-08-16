@@ -34,10 +34,10 @@ const MovieDetails = () => {
       <div>
         <MovieCard movie={movie} />
         <OtherMovieInfo />
-
         <Suspense fallback={<Loader />}>
           <Outlet />
         </Suspense>
+        error && (<h5>Sorry. {error.message}</h5>)
       </div>
     )
   );
