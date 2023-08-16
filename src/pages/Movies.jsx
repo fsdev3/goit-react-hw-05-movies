@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import SearchForm from 'components/SearchForm/SearchForm';
 import { useSearchParams } from 'react-router-dom';
-import { fetchMovies } from 'services/fetchMovie';
+import { fetchData } from 'services/fetchMovie';
 import MoviesList from 'components/MoviesList/MoviesList';
 import { Loader } from 'components/Loader/Loader';
 
@@ -10,23 +10,25 @@ const Movies = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const [searchParams, setSearchParams] = useSearchParams();
-  const queryString = searchParams.get('query');
-  const moviesUrl = `https://api.themoviedb.org/3/search/movie?`;
+  const query = searchParams.get('query');
+  const pathUrl = `search/movie?query=${query}`;
 
   useEffect(() => {
-    if (!queryString) return;
-
+    if (!query) {
+      return;
+    }
     setIsLoading(true);
-
-    fetchMovies(moviesUrl, queryString)
-      .then(movies => {
-        setSearchMovie(movies);
-        setIsLoading(false);
+    fetchData(`${pathUrl}`)
+      .then(res => {
+        return res.results.length !== 0
+          ? setSearchMovie(res.results)
+          : error('Sorry, there are no results for your search criteria');
       })
       .catch(error => {
-        setError(error).finally(setIsLoading(false));
-      });
-  }, [moviesUrl, queryString]);
+        return setError(error.message);
+      })
+      .finally(setIsLoading(false));
+  }, [pathUrl, query, error]);
 
   return (
     <div>

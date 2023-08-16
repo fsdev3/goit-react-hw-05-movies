@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { NavLinkStyled } from './AdditionalInfo.styled';
 
 const AdditionalInfo = () => {
   return (
@@ -7,10 +7,10 @@ const AdditionalInfo = () => {
       <h5>Additional Information</h5>
       <ul>
         <li key={'cast'}>
-          <Link to={'cast'}>Cast</Link>
+          <NavLinkStyled to={'cast'}>Cast</NavLinkStyled>
         </li>
         <li key={'reviews'}>
-          <Link to={'reviews'}>Reviews</Link>
+          <NavLinkStyled to={'reviews'}>Reviews</NavLinkStyled>
         </li>
       </ul>
     </div>

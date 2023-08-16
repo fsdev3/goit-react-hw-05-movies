@@ -1,23 +1,18 @@
-import axios from 'axios';
+const BASE_URL = 'https://api.themoviedb.org/3/';
 
-export async function fetchMovies(url, queryString) {
-  try {
-    const response = await axios.get(`${url}`, {
-      params: {
-        language: 'en-US',
-        api_key: '6a0683dee19fbdb413c6749ee38e1926',
-        include_adult: 'false',
-        page: '1',
-        query: queryString,
-      },
-    });
-    if (Array.isArray(response.data.results)) {
-      return response.data.results;
-    } else {
-      return response.data;
+export async function fetchData(pathUrl) {
+  const options = {
+    method: 'GET',
+    headers: {
+      accept: 'application/json',
+      Authorization:
+        'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI2YTA2ODNkZWUxOWZiZGI0MTNjNjc0OWVlMzhlMTkyNiIsInN1YiI6IjY0ZDhkN2RjZDEwMGI2MDEzOTVkZTBkMiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.9VNX7Ejx-gQqZfpxhKRr_X7cvU3d-SXbYHiDn3nidDU',
+    },
+  };
+  return await fetch(`${BASE_URL}${pathUrl}`, options).then(response => {
+    if (!response.ok) {
+      throw new Error(response.status);
     }
-  } catch (error) {
-    console.error(error);
-    throw error;
-  }
+    return response.json();
+  });
 }
