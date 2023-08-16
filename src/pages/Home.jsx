@@ -28,8 +28,6 @@ const Home = () => {
     <div>
       <h2>Trending Today</h2>
       <MoviesList movies={movies} />
-      {/* {isLoading && <Loader />}
-      {isError && <h5 textAlign="center">Sorry. {isError} 😭</h5>} */}
     </div>
   );
 };

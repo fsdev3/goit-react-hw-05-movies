@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
-// import { useSearchParams } from 'react-router-dom';
 
 const SearchForm = ({ setSearchParams }) => {
   const [searchValue, setSearchValue] = useState('');
-  // const [searchParams, setSearchParams] = useSearchParams();
 
   const onChange = evt => {
     return setSearchValue(evt.target.value);

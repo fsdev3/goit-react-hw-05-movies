@@ -1,8 +1,7 @@
 import { Route, Routes } from 'react-router-dom';
-import { StyledNavLink } from './App.styled';
+// import { StyledNavLink } from './App.styled';
 import HomePage from 'pages/Home';
 import Movies from 'pages/Movies';
-// import NotFound from 'pages/NotFound';
 import MovieDetails from 'pages/MovieDetails';
 import Home from 'pages/Home';
 import { SharedLayout } from './SharedLayout/SharedLayout';
