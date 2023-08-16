@@ -14,13 +14,13 @@ const MovieDetails = () => {
 
   useEffect(() => {
     if (!movieId) return;
-    console.log(movieId);
+    // console.log(movieId);
 
     setIsLoading(true);
 
     fetchMovies(detailsUrl)
       .then(movies => {
-        console.log(movies);
+        // console.log(movies);
         setMovie(movies);
         setIsLoading(false);
       })
@@ -37,7 +37,7 @@ const MovieDetails = () => {
         <Suspense fallback={<Loader />}>
           <Outlet />
         </Suspense>
-        error && (<h5>Sorry. {error.message}</h5>)
+        {error && <h5>Sorry. {error.message}</h5>}
       </div>
     )
   );

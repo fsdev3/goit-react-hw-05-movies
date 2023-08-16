@@ -32,7 +32,7 @@ const Movies = () => {
     <div>
       <SearchForm />
       <MoviesList movies={searchMovie} />
-      error && (<h5>Sorry. {error.message}</h5>)
+      {error && <h5>Sorry. {error.message}</h5>}
     </div>
   );
 };
