@@ -1,5 +1,4 @@
 import { Route, Routes } from 'react-router-dom';
-// import { StyledNavLink } from './App.styled';
 import HomePage from 'pages/Home';
 import Movies from 'pages/Movies';
 import MovieDetails from 'pages/MovieDetails';

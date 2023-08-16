@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import MoviesList from 'components/MoviesList/MoviesList';
+import { Loader } from 'components/Loader/Loader';
 const trendyUrl = 'https://api.themoviedb.org/3/trending/all/day';
 
 const Home = () => {
   const [movies, setMovies] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchTrending = async () => {
@@ -17,7 +20,7 @@ const Home = () => {
         });
         setMovies(response.data.results);
       } catch (error) {
-        console.error(error);
+        setError(error).finally(setIsLoading(false));
       }
     };
 
@@ -28,6 +31,8 @@ const Home = () => {
     <div>
       <h2>Trending Today</h2>
       <MoviesList movies={movies} />
+      {isLoading && <Loader />}
+      {error && <h5>Sorry. {error}</h5>}
     </div>
   );
 };

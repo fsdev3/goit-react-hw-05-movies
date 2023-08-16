@@ -24,8 +24,7 @@ const Movies = () => {
         setIsLoading(false);
       })
       .catch(error => {
-        setError(error);
-        setIsLoading(false);
+        setError(error).finally(setIsLoading(false));
       });
   }, [moviesUrl, queryString]);
 
