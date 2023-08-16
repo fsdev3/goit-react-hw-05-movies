@@ -3,6 +3,7 @@ import SearchForm from 'components/SearchForm/SearchForm';
 import { useSearchParams } from 'react-router-dom';
 import { fetchMovies } from 'services/fetchMovie';
 import MoviesList from 'components/MoviesList/MoviesList';
+import { Loader } from 'components/Loader/Loader';
 
 const Movies = () => {
   const [searchMovie, setSearchMovie] = useState([]);
@@ -30,9 +31,10 @@ const Movies = () => {
 
   return (
     <div>
-      <SearchForm />
+      <SearchForm setSearchParams={setSearchParams} />
       <MoviesList movies={searchMovie} />
-      {error && <h5>Sorry. {error.message}</h5>}
+      {isLoading && <Loader />}
+      {error && <h5>Sorry. {error}</h5>}
     </div>
   );
 };

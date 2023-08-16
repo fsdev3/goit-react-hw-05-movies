@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import { useSearchParams } from 'react-router-dom';
+// import { useSearchParams } from 'react-router-dom';
 
-const SearchForm = () => {
+const SearchForm = ({ setSearchParams }) => {
   const [searchValue, setSearchValue] = useState('');
-  const [searchParams, setSearchParams] = useSearchParams();
+  // const [searchParams, setSearchParams] = useSearchParams();
 
   const onChange = evt => {
-    setSearchValue(evt.target.value);
+    return setSearchValue(evt.target.value);
   };
 
   const handleSubmit = async e => {

@@ -37,7 +37,8 @@ const MovieDetails = () => {
         <Suspense fallback={<Loader />}>
           <Outlet />
         </Suspense>
-        {error && <h5>Sorry. {error.message}</h5>}
+        {isLoading && <Loader />}
+        {error && <h5>Sorry. {error}</h5>}
       </div>
     )
   );
