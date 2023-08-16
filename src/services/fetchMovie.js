@@ -11,8 +11,11 @@ export async function fetchMovies(url, queryString) {
         query: queryString,
       },
     });
-    return response.data.results;
-    // console.log(response.data.results);
+    if (Array.isArray(response.data.results)) {
+      return response.data.results;
+    } else {
+      return response.data;
+    }
   } catch (error) {
     console.error(error);
     throw error;

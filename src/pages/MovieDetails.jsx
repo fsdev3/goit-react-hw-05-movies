@@ -1,10 +1,11 @@
+import { Loader } from 'components/Loader/Loader';
 import MovieCard from 'components/MovieCard/MovieCard';
-import React, { useEffect, useState } from 'react';
+import React, { Suspense, useEffect, useState } from 'react';
 import { Outlet, useParams } from 'react-router-dom';
 import { fetchMovies } from 'services/fetchMovie';
 
 const MovieDetails = () => {
-  const [movie, setMovie] = useState([]);
+  const [movie, setMovie] = useState(null);
   const { movieId } = useParams();
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -12,11 +13,13 @@ const MovieDetails = () => {
 
   useEffect(() => {
     if (!movieId) return;
+    console.log(movieId);
 
     setIsLoading(true);
 
     fetchMovies(detailsUrl)
       .then(movies => {
+        console.log(movies);
         setMovie(movies);
         setIsLoading(false);
       })
@@ -26,14 +29,14 @@ const MovieDetails = () => {
       });
   }, [detailsUrl, movieId]);
   return (
-    movie.id && (
+    movie !== null && (
       <div>
         <MovieCard movie={movie} />
         {/* <AdditionalInfo /> */}
 
-        {/* <Suspense fallback={<Loader />}>
+        <Suspense fallback={<Loader />}>
           <Outlet />
-        </Suspense> */}
+        </Suspense>
       </div>
     )
   );
