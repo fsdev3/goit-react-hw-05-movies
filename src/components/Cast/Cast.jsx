@@ -3,6 +3,7 @@ import { Loader } from 'components/Loader/Loader';
 import { useParams } from 'react-router-dom';
 import { fetchData } from 'services/fetchMovie';
 import { CardList } from './Card.styled';
+import Notiflix from 'notiflix';
 
 const defaultImg =
   'https://ireland.apollo.olxcdn.com/v1/files/0iq0gb9ppip8-UA/image;s=1000x700';
@@ -45,9 +46,9 @@ const Cast = () => {
           ))}
         </CardList>
       )}
-      {cast.length === 0 && <p>Sorry, no information...</p>}
+      {cast.length === 0 && <p>Sorry, there are no results</p>}
       {isLoading && <Loader />}
-      {error && <h5>Sorry. {error}</h5>}
+      {error && Notiflix.Notify.failure(`Sorry, ${error}`)}
     </div>
   );
 };

@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 
 const SearchForm = ({ setSearchParams }) => {
   const [searchValue, setSearchValue] = useState('');
 
-  const onChange = evt => {
-    return setSearchValue(evt.target.value);
+  const onChange = e => {
+    return setSearchValue(e.target.value);
   };
 
   const handleSubmit = async e => {
@@ -33,6 +34,10 @@ const SearchForm = ({ setSearchParams }) => {
       </form>
     </div>
   );
+};
+
+SearchForm.propTypes = {
+  setSearchParams: PropTypes.func.isRequired,
 };
 
 export default SearchForm;

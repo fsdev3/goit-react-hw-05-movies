@@ -4,6 +4,7 @@ import { useSearchParams } from 'react-router-dom';
 import { fetchData } from 'services/fetchMovie';
 import MoviesList from 'components/MoviesList/MoviesList';
 import { Loader } from 'components/Loader/Loader';
+import Notiflix from 'notiflix';
 
 const Movies = () => {
   const [searchMovie, setSearchMovie] = useState([]);
@@ -35,7 +36,7 @@ const Movies = () => {
       <SearchForm setSearchParams={setSearchParams} />
       <MoviesList movies={searchMovie} />
       {isLoading && <Loader />}
-      {error && <h5>Sorry. {error}</h5>}
+      {error && Notiflix.Notify.failure(`Sorry, ${error}`)}
     </div>
   );
 };

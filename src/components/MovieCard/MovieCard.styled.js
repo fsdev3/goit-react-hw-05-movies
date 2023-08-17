@@ -5,3 +5,11 @@ export const Card = styled.div`
   display: flex;
   gap: 20px;
 `;
+
+export const Button = styled.button`
+  margin-top: 10px;
+  padding: 4px 12px;
+  font-size: 16px;
+  background-color: orange;
+  border-radius: 4px;
+`;

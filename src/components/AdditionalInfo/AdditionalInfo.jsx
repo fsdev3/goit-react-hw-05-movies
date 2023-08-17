@@ -1,4 +1,3 @@
-import React from 'react';
 import { NavLinkStyled } from './AdditionalInfo.styled';
 
 const AdditionalInfo = () => {
