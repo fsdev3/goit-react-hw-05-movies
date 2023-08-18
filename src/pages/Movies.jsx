@@ -9,7 +9,6 @@ import Notiflix from 'notiflix';
 const Movies = () => {
   const [searchMovie, setSearchMovie] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(null);
   const [searchParams, setSearchParams] = useSearchParams();
   const query = searchParams.get('query');
   const pathUrl = `search/movie?query=${query}`;
@@ -23,20 +22,19 @@ const Movies = () => {
       .then(res => {
         return res.results.length !== 0
           ? setSearchMovie(res.results)
-          : error('Sorry, there are no results for your search criteria');
+          : Notiflix.Notify.failure(`Sorry, error`);
       })
       .catch(error => {
-        return setError(error.message);
+        error && Notiflix.Notify.failure(`Sorry, ${error}`);
       })
       .finally(setIsLoading(false));
-  }, [pathUrl, query, error]);
+  }, [pathUrl, query]);
 
   return (
     <div>
       <SearchForm setSearchParams={setSearchParams} />
       <MoviesList movies={searchMovie} />
       {isLoading && <Loader />}
-      {error && Notiflix.Notify.failure(`Sorry, ${error}`)}
     </div>
   );
 };

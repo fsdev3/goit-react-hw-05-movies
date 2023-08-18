@@ -10,7 +10,6 @@ const MovieDetails = () => {
   const [movie, setMovie] = useState(null);
   const { movieId } = useParams();
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(null);
   const pathUrl = `movie/${movieId}`;
 
   const location = useLocation();
@@ -23,7 +22,9 @@ const MovieDetails = () => {
       .then(res => {
         return setMovie(res);
       })
-      .catch(error => setError(error.message))
+      .catch(error => {
+        error && Notiflix.Notify.failure(`Sorry, ${error}`);
+      })
       .finally(setIsLoading(false));
   }, [pathUrl]);
 
@@ -36,7 +37,6 @@ const MovieDetails = () => {
         <MovieCard movie={movie} onGoBack={onGoBack} />
         <AdditionalInfo />
         {isLoading && <Loader />}
-        {error && Notiflix.Notify.failure(`Sorry, ${error}`)}
         <Suspense fallback={<Loader />}>
           <Outlet />
         </Suspense>

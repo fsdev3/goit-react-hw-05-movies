@@ -9,7 +9,6 @@ const Reviews = () => {
   const [reviews, setReviews] = useState([]);
   const { movieId } = useParams();
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(null);
   const pathUrl = `movie/${movieId}/reviews`;
 
   useEffect(() => {
@@ -18,7 +17,9 @@ const Reviews = () => {
       .then(res => {
         return setReviews(res.results);
       })
-      .catch(error => setError(error.message))
+      .catch(error => {
+        error && Notiflix.Notify.failure(`Sorry, ${error}`);
+      })
       .finally(setIsLoading(false));
   }, [pathUrl]);
   return (
@@ -35,7 +36,6 @@ const Reviews = () => {
         </ItemList>
       )}
       {isLoading && <Loader />}
-      {error && Notiflix.Notify.failure(`Sorry, ${error}`)}
     </div>
   );
 };

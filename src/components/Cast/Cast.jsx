@@ -12,7 +12,6 @@ const Cast = () => {
   const [cast, setCast] = useState([]);
   const { movieId } = useParams();
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(null);
   const pathUrl = `movie/${movieId}/credits`;
 
   useEffect(() => {
@@ -21,7 +20,9 @@ const Cast = () => {
       .then(res => {
         return setCast(res.cast);
       })
-      .catch(error => setError(error.message))
+      .catch(error => {
+        error && Notiflix.Notify.failure(`Sorry, ${error}`);
+      })
       .finally(setIsLoading(false));
   }, [pathUrl]);
   return (
@@ -48,7 +49,6 @@ const Cast = () => {
       )}
       {cast.length === 0 && <p>Sorry, there are no results</p>}
       {isLoading && <Loader />}
-      {error && Notiflix.Notify.failure(`Sorry, ${error}`)}
     </div>
   );
 };

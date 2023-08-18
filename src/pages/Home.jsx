@@ -9,7 +9,6 @@ const pathUrl = 'trending/all/day';
 const Home = () => {
   const [movies, setMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(null);
 
   useEffect(() => {
     setIsLoading(true);
@@ -17,7 +16,9 @@ const Home = () => {
       .then(res => {
         return setMovies(res.results);
       })
-      .catch(error => setError(error.message))
+      .catch(error => {
+        error && Notiflix.Notify.failure(`Sorry, ${error}`);
+      })
       .finally(setIsLoading(false));
   }, []);
 
@@ -26,7 +27,6 @@ const Home = () => {
       <h2>Trending Today</h2>
       <MoviesList movies={movies} />
       {isLoading && <Loader />}
-      {error && Notiflix.Notify.failure(`Sorry, ${error}`)}
     </div>
   );
 };
