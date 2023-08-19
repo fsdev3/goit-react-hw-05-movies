@@ -13,7 +13,7 @@ const Reviews = () => {
 
   useEffect(() => {
     setIsLoading(true);
-    fetchData(`${pathUrl}`)
+    fetchData(pathUrl)
       .then(res => {
         return setReviews(res.results);
       })

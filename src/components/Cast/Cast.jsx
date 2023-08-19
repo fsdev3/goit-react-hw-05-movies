@@ -16,7 +16,7 @@ const Cast = () => {
 
   useEffect(() => {
     setIsLoading(true);
-    fetchData(`${pathUrl}`)
+    fetchData(pathUrl)
       .then(res => {
         return setCast(res.cast);
       })

@@ -18,7 +18,7 @@ const MovieDetails = () => {
 
   useEffect(() => {
     setIsLoading(true);
-    fetchData(`${pathUrl}`)
+    fetchData(pathUrl)
       .then(res => {
         return setMovie(res);
       })

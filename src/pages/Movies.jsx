@@ -18,7 +18,7 @@ const Movies = () => {
       return;
     }
     setIsLoading(true);
-    fetchData(`${pathUrl}`)
+    fetchData(pathUrl)
       .then(res => {
         return res.results.length !== 0
           ? setSearchMovie(res.results)

@@ -12,7 +12,7 @@ const Home = () => {
 
   useEffect(() => {
     setIsLoading(true);
-    fetchData(`${pathUrl}`)
+    fetchData(pathUrl)
       .then(res => {
         return setMovies(res.results);
       })
